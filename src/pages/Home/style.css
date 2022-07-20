@@ -1,0 +1,23 @@
+.homeDiv {
+  padding: 90px 15px 10px 0px;
+  flex-wrap: wrap;
+  overflow: auto;
+  max-height: 100vh;
+}
+.logoutContainer {
+  width: 150px;
+  background: rgba(102, 102, 102, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(87, 87, 87, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid rgba(90, 90, 90, 0.18);
+  padding: 20px;
+  column-gap: 10px;
+  color: #ffffff;
+  z-index: 50;
+  position: absolute;
+  margin-top: 80px;
+  right: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+}

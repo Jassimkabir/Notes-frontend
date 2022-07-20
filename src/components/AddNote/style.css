@@ -1,0 +1,45 @@
+.addNoteContainer {
+  width: 100vw;
+  height: 100vh;
+  background: #000000e1;
+  display: grid;
+  place-content: center;
+  position: fixed;
+  z-index: 50;
+  color: white;
+}
+.containerBox {
+  width: 40vw;
+  height: 40vh;
+  background: rgba(79, 79, 79, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(97, 97, 97, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 15px;
+  padding: 50px;
+  position: relative;
+}
+.closeMark {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  top: 10px;
+}
+.inputContainer {
+  background: transparent;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  margin-bottom: 25px;
+}
+h3,
+label {
+  font-weight: 600;
+}
+input {
+  background: transparent;
+  outline: none;
+  border: none;
+  color: #ffffff;
+}
