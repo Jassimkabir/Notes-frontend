@@ -7,13 +7,17 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   padding: 1rem;
   position: fixed;
-  z-index: 20;
+  z-index: 1;
 }
 .containerRight {
   column-gap: 25px;
 }
-.profileIcon {
-  color: #ffffff;
+.profileDiv {
   font-size: 1.5rem;
-  cursor: pointer;
+  position: relative;
+}
+.profileButton {
+  color: #ffffff;
+  border: none;
+  background: #00000000;
 }

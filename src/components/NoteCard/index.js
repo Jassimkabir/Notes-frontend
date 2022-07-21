@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-function NoteCard() {
+function NoteCard({ setDeleteNote }) {
   return (
     <div className='cardContainer'>
       <div className='cardContents'>
@@ -16,8 +16,12 @@ function NoteCard() {
           </span>
         </div>
         <div className='cardFooter d-flex justify-content-end'>
-          <i class='fa-solid fa-trash'></i>
-          <i class='fa-solid fa-pen-to-square'></i>
+          <button onClick={() => setDeleteNote(true)} className='actionButton'>
+            <i className='fa-solid fa-trash'></i>
+          </button>
+          <button className='actionButton'>
+            <i className='fa-solid fa-pen-to-square'></i>
+          </button>
         </div>
       </div>
     </div>

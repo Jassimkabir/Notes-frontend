@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AddNote from '../../components/AddNote';
 import Background from '../../components/Background';
+import DeleteModal from '../../components/DeleteModal';
 import Navbar from '../../components/Navbar';
 import NoteCard from '../../components/NoteCard';
 import './style.css';
@@ -8,6 +9,7 @@ import './style.css';
 function Home() {
   const [addNote, setAddNote] = useState(false);
   const [logoutCard, setLogoutCard] = useState(false);
+  const [deleteNote, setDeleteNote] = useState(false);
 
   return (
     <>
@@ -17,35 +19,38 @@ function Home() {
         logoutCard={logoutCard}
         setLogoutCard={setLogoutCard}
       />
-      {addNote === true ? <AddNote setAddNote={setAddNote} /> : <></>}
+      {addNote ? <AddNote setAddNote={setAddNote} /> : null}
+      {deleteNote ? <DeleteModal setDeleteNote={setDeleteNote} /> : null}
       {logoutCard ? (
-        <div className='logoutContainer d-flex align-items-center justify-content-center'>
+        <button className='logoutContainer d-flex align-items-center justify-content-center'>
           <div>Logout</div>
-          <i class='fa-solid fa-arrow-right-from-bracket'></i>
-        </div>
-      ) : (
-        <></>
-      )}
+          <i className='fa-solid fa-arrow-right-from-bracket'></i>
+        </button>
+      ) : null}
       <div className='homeDiv d-flex justify-content-center'>
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
+        <NoteCard setDeleteNote={setDeleteNote} />
       </div>
     </>
   );

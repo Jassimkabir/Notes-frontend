@@ -11,11 +11,14 @@ function Navbar({ setAddNote, logoutCard, setLogoutCard }) {
         <button className='btn btn-primary' onClick={() => setAddNote(true)}>
           Add Note
         </button>
-        <div className='profileIcon'>
-          <i
+        <div className='profileDiv'>
+          <button
+            className='profileButton'
             onClick={() => setLogoutCard(!logoutCard)}
-            class='fa-solid fa-user'
-          ></i>
+            onBlur={() => setLogoutCard(false)}
+          >
+            <i className='fa-solid fa-user'></i>
+          </button>
         </div>
       </div>
     </div>
