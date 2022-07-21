@@ -19,14 +19,14 @@ function Home() {
         logoutCard={logoutCard}
         setLogoutCard={setLogoutCard}
       />
-      {addNote ? <AddNote setAddNote={setAddNote} /> : null}
-      {deleteNote ? <DeleteModal setDeleteNote={setDeleteNote} /> : null}
-      {logoutCard ? (
+      {addNote && <AddNote setAddNote={setAddNote} />}
+      {deleteNote && <DeleteModal setDeleteNote={setDeleteNote} />}
+      {logoutCard && (
         <button className='logoutContainer d-flex align-items-center justify-content-center'>
           <div>Logout</div>
           <i className='fa-solid fa-arrow-right-from-bracket'></i>
         </button>
-      ) : null}
+      )}
       <div className='homeDiv d-flex justify-content-center'>
         <NoteCard setDeleteNote={setDeleteNote} />
         <NoteCard setDeleteNote={setDeleteNote} />
