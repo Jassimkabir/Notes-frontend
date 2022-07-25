@@ -1,0 +1,17 @@
+.expandContainer {
+  width: 100vw;
+  height: 100vh;
+  background: rgba(39, 38, 38, 0.25);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  position: absolute;
+  z-index: 1;
+  color: white;
+  padding: 30px;
+}
+.closeButton {
+  background: #00000000;
+  border: none;
+  outline: none;
+  color: #ffffff;
+}

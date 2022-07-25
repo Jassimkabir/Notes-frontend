@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 
-function NoteCard({ setDeleteNote }) {
+function NoteCard({ setDeleteNote, setExpandCard }) {
   return (
     <div className='cardContainer'>
       <div className='cardContents'>
@@ -10,8 +10,8 @@ function NoteCard({ setDeleteNote }) {
         </div>
         <div className='cardBody'>
           <span>
-            Go to the grocery shop and buy Lorem ipsum is placeholder text
-            commonly used in the graphic, print, and publishing industries ...
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt...
           </span>
         </div>
         <div className='cardFooter d-flex justify-content-between align-items-center'>
@@ -25,6 +25,12 @@ function NoteCard({ setDeleteNote }) {
             </button>
             <button className='actionButton'>
               <i className='fa-solid fa-pen-to-square'></i>
+            </button>
+            <button
+              onClick={() => setExpandCard(true)}
+              className='actionButton'
+            >
+              <i class='fa-solid fa-expand'></i>
             </button>
           </div>
         </div>

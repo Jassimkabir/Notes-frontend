@@ -22,8 +22,11 @@
 }
 .closeMark {
   position: absolute;
-  right: 20px;
-  cursor: pointer;
+  background: #00000000;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  right: 14px;
   top: 10px;
 }
 .inputContainer {
