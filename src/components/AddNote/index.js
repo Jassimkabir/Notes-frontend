@@ -5,9 +5,9 @@ function AddNote({ setAddNote }) {
   return (
     <div className='addNoteContainer'>
       <div className='containerBox'>
-        <div onClick={() => setAddNote(false)} className='closeMark'>
-          x
-        </div>
+        <button onClick={() => setAddNote(false)} className='closeMark'>
+          <i class='fa-solid fa-circle-xmark'></i>
+        </button>
         <h3 className='text-center'>Add Note</h3>
         <div className='inputFields'>
           <label>Title :</label>
