@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './style.css';
 import Background from '../../components/Background';
+import googleIcon from '../../assets/images/Google.png';
+import githubIcon from '../../assets/images/Github.png';
 
 function Login() {
   const [passwordType, setPasswordType] = useState(false);
@@ -11,39 +13,15 @@ function Login() {
       <div className='loginContainer'>
         <div className='loginContainerBox'>
           <div className='loginHead text-center'>
-            <h3>Login</h3>
+            <span>Login With</span>
           </div>
           <div className='loginContents d-flex flex-column align-items-center'>
-            <div className='inputContainer'>
-              <input
-                className='inputField w-100'
-                type='email'
-                placeholder='Email'
-              />
-            </div>
-            <div className='inputContainer d-flex'>
-              <input
-                type={passwordType ? 'text' : 'password'}
-                className='inputField w-100'
-                placeholder='Password'
-              />
-              <button
-                className='showHideButton'
-                onClick={() => setPasswordType(!passwordType)}
-              >
-                {passwordType ? (
-                  <i class='fa-solid fa-eye'></i>
-                ) : (
-                  <i class='fa-solid fa-eye-slash'></i>
-                )}
-              </button>
-            </div>
-            <button className='btn btn-primary loginButton'>Login</button>
-          </div>
-          <div className='loginFooter text-center'>
-            <span>
-              Not a User?<a href='#'>Register</a>
-            </span>
+            <button className='buttonContainer d-flex align-items-center'>
+              <img className='icon me-2' src={googleIcon} alt='Google' /> Google
+            </button>
+            <button className='buttonContainer d-flex align-items-center'>
+              <img className='icon me-2' src={githubIcon} alt='Google' /> Github
+            </button>
           </div>
         </div>
       </div>
