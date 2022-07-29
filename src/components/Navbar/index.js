@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css';
 
-function Navbar({ setAddNote, logoutCard, setLogoutCard }) {
+function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
   return (
     <div className='navbarContainer d-flex justify-content-between align-items-center'>
       <div className='logo'>
@@ -13,11 +13,11 @@ function Navbar({ setAddNote, logoutCard, setLogoutCard }) {
         </button>
         <div className='profileDiv'>
           <button
-            className='profileButton'
+            className='profileButton d-flex align-items-center'
             onClick={() => setLogoutCard(!logoutCard)}
-            onBlur={() => setLogoutCard(false)}
           >
-            <i className='fa-solid fa-user'></i>
+            <img src={user.avatar} className='profilePicture me-2' />
+            <span className='profileName'>{user.name}</span>
           </button>
         </div>
       </div>
