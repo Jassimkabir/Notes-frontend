@@ -59,7 +59,12 @@ function Home({ user }) {
             />
           ))
         ) : (
-          <div className='notFound d-flex flex-column justify-content-center align-items-center'>
+          <div
+            className={
+              !addNote &&
+              'notFound d-flex flex-column justify-content-center align-items-center'
+            }
+          >
             <img src={Notes} alt='' className='notesImage mb-2' />
             <h5>No notes here yet</h5>
           </div>
