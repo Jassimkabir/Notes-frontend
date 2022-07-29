@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import './style.css';
 import axios from '../../api/axios';
+import { Link } from 'react-router-dom';
 
 function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
   const [avatar, setAvatar] = useState('');
@@ -17,7 +18,9 @@ function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
   return (
     <div className='navbarContainer d-flex justify-content-between align-items-center'>
       <div className='logo'>
-        <h3 className='text-white'>Notes</h3>
+        <Link to='/home' className='text-white logo'>
+          Notes
+        </Link>
       </div>
       <div className='containerRight d-flex align-items-center'>
         <button className='btn btn-primary' onClick={() => setAddNote(true)}>

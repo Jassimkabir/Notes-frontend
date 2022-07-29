@@ -9,6 +9,12 @@
   position: fixed;
   z-index: 1;
 }
+.logo {
+  cursor: pointer;
+  font-size: 27px;
+  text-decoration: none;
+  font-weight: 600;
+}
 .containerRight {
   column-gap: 25px;
 }
