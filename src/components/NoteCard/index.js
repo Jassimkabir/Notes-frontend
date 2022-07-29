@@ -1,21 +1,21 @@
+import moment from 'moment';
 import React, { useState } from 'react';
 import './style.css';
 
-function NoteCard({ setDeleteNote, setExpandCard }) {
+function NoteCard({ item, setDeleteNote, setExpandCard }) {
   return (
     <div className='cardContainer'>
       <div className='cardContents'>
         <div className='cardHead'>
-          <h5>Grocery shop</h5>
+          <h5>{item?.title}</h5>
         </div>
         <div className='cardBody'>
-          <span>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt...
-          </span>
+          <span>{item?.description}</span>
         </div>
         <div className='cardFooter d-flex justify-content-between align-items-center'>
-          <span className='date'>March 31, 2022</span>
+          <span className='date'>
+            {moment(item.date).format('MMMM Do, YYYY')}
+          </span>
           <div className='actionsDiv d-flex'>
             <button
               onClick={() => setDeleteNote(true)}

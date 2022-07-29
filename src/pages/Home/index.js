@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import AddNote from '../../components/AddNote';
 import Background from '../../components/Background';
@@ -5,6 +6,7 @@ import DeleteModal from '../../components/DeleteModal';
 import ExpandCard from '../../components/ExpandCard';
 import Navbar from '../../components/Navbar';
 import NoteCard from '../../components/NoteCard';
+import Notes from '../../assets/images/Notes.png';
 import './style.css';
 
 function Home({ user }) {
@@ -12,10 +14,19 @@ function Home({ user }) {
   const [logoutCard, setLogoutCard] = useState(false);
   const [deleteNote, setDeleteNote] = useState(false);
   const [expandCard, setExpandCard] = useState(false);
+  const [notes, setNotes] = useState([]);
 
   const logout = () => {
     window.open('http://localhost:5000/auth/logout', '_self');
   };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/notes/${user.id}/get-all-notes`)
+      .then((response) => {
+        setNotes(response.data);
+      });
+  }, []);
 
   return (
     <>
@@ -39,27 +50,20 @@ function Home({ user }) {
         </button>
       )}
       <div className='homeDiv d-flex justify-content-center'>
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
+        {notes.length > 0 ? (
+          notes.map((item) => (
+            <NoteCard
+              item={item}
+              setDeleteNote={setDeleteNote}
+              setExpandCard={setExpandCard}
+            />
+          ))
+        ) : (
+          <div className='notFound d-flex flex-column justify-content-center align-items-center'>
+            <img src={Notes} alt='' className='notesImage mb-2' />
+            <h5>No notes here yet</h5>
+          </div>
+        )}
       </div>
     </>
   );
