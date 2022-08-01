@@ -18,6 +18,8 @@
 }
 .cardBody {
   color: #8e8e8e;
+  overflow: hidden;
+  max-height: 60%;
 }
 .date {
   font-size: 12px;
