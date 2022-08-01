@@ -26,7 +26,7 @@ function Home({ user }) {
       .then((response) => {
         setNotes(response.data);
       });
-  }, []);
+  }, [addNote]);
 
   return (
     <>
@@ -37,7 +37,7 @@ function Home({ user }) {
         setLogoutCard={setLogoutCard}
         user={user}
       />
-      {addNote && <AddNote setAddNote={setAddNote} />}
+      {addNote && <AddNote setAddNote={setAddNote} user={user} />}
       {expandCard && <ExpandCard setExpandCard={setExpandCard} />}
       {deleteNote && <DeleteModal setDeleteNote={setDeleteNote} />}
       {logoutCard && (
@@ -53,6 +53,7 @@ function Home({ user }) {
         {notes.length > 0 ? (
           notes.map((item) => (
             <NoteCard
+              key={item.id}
               item={item}
               setDeleteNote={setDeleteNote}
               setExpandCard={setExpandCard}

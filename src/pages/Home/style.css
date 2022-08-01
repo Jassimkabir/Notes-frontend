@@ -30,8 +30,8 @@
   height: 80vh;
   z-index: 1;
 }
-h5 {
-  color: #8e8e8e;
+.notFound h5 {
+  color: #565656;
 }
 .notesImage {
   width: 30px;

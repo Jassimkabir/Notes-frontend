@@ -16,9 +16,12 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.cardBody {
+  color: #8e8e8e;
+}
 .date {
   font-size: 12px;
-  color: #ffffff86;
+  color: #ffffff;
 }
 .actionsDiv {
   column-gap: 20px;
