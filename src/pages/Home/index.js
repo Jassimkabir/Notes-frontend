@@ -16,6 +16,7 @@ function Home({ user }) {
   const [expandCard, setExpandCard] = useState(false);
   const [notes, setNotes] = useState([]);
   const [noteId, setNoteId] = useState(null);
+  const [noteDetails, setNoteDetails] = useState(null);
 
   const logout = () => {
     window.open('http://localhost:5000/auth/logout', '_self');
@@ -37,7 +38,9 @@ function Home({ user }) {
         user={user}
       />
       {addNote && <AddNote setAddNote={setAddNote} user={user} />}
-      {expandCard && <ExpandCard setExpandCard={setExpandCard} />}
+      {expandCard && (
+        <ExpandCard setExpandCard={setExpandCard} noteDetails={noteDetails} />
+      )}
       {deleteNote && (
         <DeleteModal setDeleteNote={setDeleteNote} noteId={noteId} />
       )}
@@ -59,6 +62,7 @@ function Home({ user }) {
               setDeleteNote={setDeleteNote}
               setExpandCard={setExpandCard}
               setNoteId={setNoteId}
+              setNoteDetails={setNoteDetails}
             />
           ))
         ) : (
