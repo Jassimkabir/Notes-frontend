@@ -1,7 +1,12 @@
 import React from 'react';
 import './style.css';
+import { deleteNote } from '../../api/notes';
 
-function DeleteModal({ setDeleteNote }) {
+function DeleteModal({ setDeleteNote, noteId }) {
+  const confirmDelete = () => {
+    deleteNote(noteId);
+    setDeleteNote(false);
+  };
   return (
     <div className='divContainer d-flex justify-content-center'>
       <div className='deleteModalContainer d-flex flex-column justify-content-between'>
@@ -18,7 +23,9 @@ function DeleteModal({ setDeleteNote }) {
           >
             No
           </button>
-          <button className='btn btn-danger'>Yes</button>
+          <button onClick={() => confirmDelete()} className='btn btn-danger'>
+            Yes
+          </button>
         </div>
       </div>
     </div>

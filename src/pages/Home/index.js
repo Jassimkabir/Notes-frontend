@@ -1,4 +1,3 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import AddNote from '../../components/AddNote';
 import Background from '../../components/Background';
@@ -7,6 +6,7 @@ import ExpandCard from '../../components/ExpandCard';
 import Navbar from '../../components/Navbar';
 import NoteCard from '../../components/NoteCard';
 import Notes from '../../assets/images/Notes.png';
+import axios from '../../api/axios';
 import './style.css';
 
 function Home({ user }) {
@@ -15,18 +15,17 @@ function Home({ user }) {
   const [deleteNote, setDeleteNote] = useState(false);
   const [expandCard, setExpandCard] = useState(false);
   const [notes, setNotes] = useState([]);
+  const [noteId, setNoteId] = useState(null);
 
   const logout = () => {
     window.open('http://localhost:5000/auth/logout', '_self');
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/notes/${user.id}/get-all-notes`)
-      .then((response) => {
-        setNotes(response.data);
-      });
-  }, [addNote]);
+    axios.get(`/notes/${user.id}/get-all-notes`).then((response) => {
+      setNotes(response.data);
+    });
+  }, [addNote, deleteNote]);
 
   return (
     <>
@@ -39,7 +38,9 @@ function Home({ user }) {
       />
       {addNote && <AddNote setAddNote={setAddNote} user={user} />}
       {expandCard && <ExpandCard setExpandCard={setExpandCard} />}
-      {deleteNote && <DeleteModal setDeleteNote={setDeleteNote} />}
+      {deleteNote && (
+        <DeleteModal setDeleteNote={setDeleteNote} noteId={noteId} />
+      )}
       {logoutCard && (
         <button
           onClick={logout}
@@ -57,6 +58,7 @@ function Home({ user }) {
               item={item}
               setDeleteNote={setDeleteNote}
               setExpandCard={setExpandCard}
+              setNoteId={setNoteId}
             />
           ))
         ) : (

@@ -13,7 +13,6 @@ function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
       setAvatar(response.data.avatar);
     });
   }, []);
-  console.log('The Avatar :', avatar);
 
   return (
     <div className='navbarContainer d-flex justify-content-between align-items-center'>

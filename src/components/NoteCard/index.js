@@ -2,7 +2,11 @@ import moment from 'moment';
 import React, { useState } from 'react';
 import './style.css';
 
-function NoteCard({ item, setDeleteNote, setExpandCard }) {
+function NoteCard({ item, setDeleteNote, setExpandCard, setNoteId }) {
+  const onDelete = () => {
+    setDeleteNote(true);
+    setNoteId(item.id);
+  };
   return (
     <div className='cardContainer'>
       <div className='cardContents'>
@@ -17,10 +21,7 @@ function NoteCard({ item, setDeleteNote, setExpandCard }) {
             {moment(item.date).format('MMMM Do, YYYY')}
           </span>
           <div className='actionsDiv d-flex'>
-            <button
-              onClick={() => setDeleteNote(true)}
-              className='actionButton'
-            >
+            <button onClick={() => onDelete()} className='actionButton'>
               <i className='fa-solid fa-trash'></i>
             </button>
             <button className='actionButton'>
