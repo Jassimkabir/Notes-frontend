@@ -1,7 +1,18 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import './style.css';
 
-function AddNote({ setAddNote }) {
+function AddNote({ setAddNote, user }) {
+  const [title, setTitle] = useState('');
+  const [desc, setDesc] = useState('');
+
+  const handleSubmit = (title, description) => {
+    axios.post(`http://localhost:5000/notes/${user.id}/add-note`, {
+      title: title,
+      description: description,
+    });
+    setAddNote(false);
+  };
   return (
     <div className='addNoteContainer'>
       <div className='containerBox'>
@@ -12,15 +23,28 @@ function AddNote({ setAddNote }) {
         <div className='inputFields'>
           <label>Title :</label>
           <div className='inputContainer'>
-            <input type='text' className='w-100' />
+            <input
+              onChange={(e) => setTitle(e.target.value)}
+              type='text'
+              className='w-100'
+            />
           </div>
           <label>Description :</label>
           <div className='inputContainer'>
-            <input type='text' className='w-100' />
+            <input
+              onChange={(e) => setDesc(e.target.value)}
+              type='text'
+              className='w-100'
+            />
           </div>
         </div>
         <div>
-          <button className='btn btn-primary'>Submit</button>
+          <button
+            onClick={() => handleSubmit(title, desc)}
+            className='btn btn-primary'
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>

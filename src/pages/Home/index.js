@@ -5,6 +5,8 @@ import DeleteModal from '../../components/DeleteModal';
 import ExpandCard from '../../components/ExpandCard';
 import Navbar from '../../components/Navbar';
 import NoteCard from '../../components/NoteCard';
+import Notes from '../../assets/images/Notes.png';
+import axios from '../../api/axios';
 import './style.css';
 
 function Home({ user }) {
@@ -12,10 +14,19 @@ function Home({ user }) {
   const [logoutCard, setLogoutCard] = useState(false);
   const [deleteNote, setDeleteNote] = useState(false);
   const [expandCard, setExpandCard] = useState(false);
+  const [notes, setNotes] = useState([]);
+  const [noteId, setNoteId] = useState(null);
+  const [noteDetails, setNoteDetails] = useState(null);
 
   const logout = () => {
     window.open('http://localhost:5000/auth/logout', '_self');
   };
+
+  useEffect(() => {
+    axios.get(`/notes/${user.id}/get-all-notes`).then((response) => {
+      setNotes(response.data);
+    });
+  }, [addNote, deleteNote]);
 
   return (
     <>
@@ -26,9 +37,13 @@ function Home({ user }) {
         setLogoutCard={setLogoutCard}
         user={user}
       />
-      {addNote && <AddNote setAddNote={setAddNote} />}
-      {expandCard && <ExpandCard setExpandCard={setExpandCard} />}
-      {deleteNote && <DeleteModal setDeleteNote={setDeleteNote} />}
+      {addNote && <AddNote setAddNote={setAddNote} user={user} />}
+      {expandCard && (
+        <ExpandCard setExpandCard={setExpandCard} noteDetails={noteDetails} />
+      )}
+      {deleteNote && (
+        <DeleteModal setDeleteNote={setDeleteNote} noteId={noteId} />
+      )}
       {logoutCard && (
         <button
           onClick={logout}
@@ -39,27 +54,28 @@ function Home({ user }) {
         </button>
       )}
       <div className='homeDiv d-flex justify-content-center'>
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
-        <NoteCard setDeleteNote={setDeleteNote} setExpandCard={setExpandCard} />
+        {notes.length > 0 ? (
+          notes.map((item) => (
+            <NoteCard
+              key={item.id}
+              item={item}
+              setDeleteNote={setDeleteNote}
+              setExpandCard={setExpandCard}
+              setNoteId={setNoteId}
+              setNoteDetails={setNoteDetails}
+            />
+          ))
+        ) : (
+          <div
+            className={
+              !addNote &&
+              'notFound d-flex flex-column justify-content-center align-items-center'
+            }
+          >
+            <img src={Notes} alt='' className='notesImage mb-2' />
+            <h5>No notes here yet</h5>
+          </div>
+        )}
       </div>
     </>
   );

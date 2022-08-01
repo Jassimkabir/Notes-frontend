@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './style.css';
 import Background from '../../components/Background';
 import googleIcon from '../../assets/images/Google.png';

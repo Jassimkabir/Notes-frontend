@@ -26,3 +26,15 @@
   z-index: 1;
   border-radius: 10px;
 }
+.notFound {
+  height: 80vh;
+  z-index: 1;
+}
+.notFound h5 {
+  color: #565656;
+}
+.notesImage {
+  width: 30px;
+  filter: invert(66%) sepia(0%) saturate(0%) hue-rotate(135deg) brightness(86%)
+    contrast(86%);
+}
