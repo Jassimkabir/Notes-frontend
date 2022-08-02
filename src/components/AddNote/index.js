@@ -24,6 +24,7 @@ function AddNote({ setAddNote, user }) {
           <label>Title :</label>
           <div className='inputContainer'>
             <input
+              autoFocus
               onChange={(e) => setTitle(e.target.value)}
               type='text'
               className='w-100'
@@ -31,11 +32,13 @@ function AddNote({ setAddNote, user }) {
           </div>
           <label>Description :</label>
           <div className='inputContainer'>
-            <input
+            <textarea
+              cols='30'
+              rows='10'
               onChange={(e) => setDesc(e.target.value)}
               type='text'
-              className='w-100'
-            />
+              className='textArea w-100'
+            ></textarea>
           </div>
         </div>
         <div>
