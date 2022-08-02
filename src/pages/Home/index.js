@@ -27,7 +27,7 @@ const Home = observer(({ user }) => {
 
   useEffect(() => {
     getAllNotes(user.id);
-  }, []);
+  }, [addNote]);
 
   return (
     <>
