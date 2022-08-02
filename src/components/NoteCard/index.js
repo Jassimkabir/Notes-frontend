@@ -10,6 +10,13 @@ function NoteCard({
   setNoteId,
   setNoteDetails,
 }) {
+  const nowDate = moment(new Date());
+  const itemDate = moment(item.date);
+  const duration = moment.duration(nowDate.diff(itemDate));
+  const days = Math.round(duration.asDays());
+  const hours = Math.round(duration.asHours());
+  const minutes = Math.round(duration.asMinutes());
+
   const onDelete = () => {
     setDeleteNote(true);
     setNoteId(item.id);
@@ -31,7 +38,12 @@ function NoteCard({
         </div>
         <div className='cardFooter d-flex justify-content-between align-items-center'>
           <span className='date'>
-            {moment(item.date).format('MMMM Do, YYYY')}
+            {(days > 5 && moment(item.date).format('MMMM Do, YYYY')) ||
+              (minutes < 1 && 'Just now') ||
+              (minutes < 60 &&
+                `${minutes} ${minutes > 1 ? 'minutes' : 'minute'} ago`) ||
+              (hours < 24 && `${hours} ${hours > 1 ? 'hours' : 'hour'} ago`) ||
+              (hours >= 24 && `${days} ${days > 1 ? 'days' : 'day'} ago`)}
           </span>
           <div className='actionsDiv d-flex'>
             <button onClick={() => onDelete()} className='actionButton'>
