@@ -6,15 +6,15 @@ import ExpandCard from '../../components/ExpandCard';
 import Navbar from '../../components/Navbar';
 import NoteCard from '../../components/NoteCard';
 import Notes from '../../assets/images/Notes.png';
-import axios from '../../api/axios';
+import { useStore } from '../../store/index';
+import { observer } from 'mobx-react-lite';
 import './style.css';
 
-function Home({ user }) {
+const Home = observer(({ user }) => {
   const [addNote, setAddNote] = useState(false);
   const [logoutCard, setLogoutCard] = useState(false);
   const [deleteNote, setDeleteNote] = useState(false);
   const [expandCard, setExpandCard] = useState(false);
-  const [notes, setNotes] = useState([]);
   const [noteId, setNoteId] = useState(null);
   const [noteDetails, setNoteDetails] = useState(null);
 
@@ -22,11 +22,12 @@ function Home({ user }) {
     window.open('http://localhost:5000/auth/logout', '_self');
   };
 
+  const { notesStore } = useStore();
+  const { notes, getAllNotes } = notesStore;
+
   useEffect(() => {
-    axios.get(`/notes/${user.id}/get-all-notes`).then((response) => {
-      setNotes(response.data);
-    });
-  }, [addNote, deleteNote]);
+    getAllNotes(user.id);
+  }, []);
 
   return (
     <>
@@ -79,6 +80,6 @@ function Home({ user }) {
       </div>
     </>
   );
-}
+});
 
 export default Home;

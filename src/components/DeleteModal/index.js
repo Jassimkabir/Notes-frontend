@@ -1,10 +1,16 @@
 import React from 'react';
 import './style.css';
-import { deleteNote } from '../../api/notes';
+import { useStore } from '../../store/index';
+import { observer } from 'mobx-react-lite';
 
-function DeleteModal({ setDeleteNote, noteId }) {
+const DeleteModal = observer(({ setDeleteNote, noteId }) => {
+  const { notesStore } = useStore();
+  const { deleteNote, setNoteId } = notesStore;
+
+  setNoteId(noteId);
+
   const confirmDelete = () => {
-    deleteNote(noteId);
+    deleteNote();
     setDeleteNote(false);
   };
   return (
@@ -30,6 +36,6 @@ function DeleteModal({ setDeleteNote, noteId }) {
       </div>
     </div>
   );
-}
+});
 
 export default DeleteModal;

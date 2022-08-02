@@ -1,9 +1,9 @@
 import axios from './axios';
 
-export const getAllNotes = (userId) => {
-  axios.get(`/notes/${userId}/get-all-notes`);
+export const getAllNotes = async (userId) => {
+  return await axios.get(`/notes/${userId}/get-all-notes`);
 };
 
-export const deleteNote = (noteId) => {
-  axios.post(`/notes/delete-note/${noteId}`);
+export const deleteNote = async (noteId) => {
+  await axios.post(`/notes/delete-note/${noteId}`);
 };
