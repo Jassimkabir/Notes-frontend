@@ -1,16 +1,17 @@
-import axios from 'axios';
 import React, { useState } from 'react';
+import { useStore } from '../../store/index';
+import { observer } from 'mobx-react-lite';
 import './style.css';
 
-function AddNote({ setAddNote, user }) {
+const AddNote = observer(({ setAddNote }) => {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
 
-  const handleSubmit = (title, description) => {
-    axios.post(`http://localhost:5000/notes/${user.id}/add-note`, {
-      title: title,
-      description: description,
-    });
+  const { notesStore } = useStore();
+  const { addNote } = notesStore;
+
+  const handleSubmit = () => {
+    addNote(title, desc);
     setAddNote(false);
   };
   return (
@@ -42,16 +43,13 @@ function AddNote({ setAddNote, user }) {
           </div>
         </div>
         <div>
-          <button
-            onClick={() => handleSubmit(title, desc)}
-            className='btn btn-primary'
-          >
+          <button onClick={() => handleSubmit()} className='btn btn-primary'>
             Submit
           </button>
         </div>
       </div>
     </div>
   );
-}
+});
 
 export default AddNote;

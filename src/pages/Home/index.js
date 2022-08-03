@@ -19,14 +19,16 @@ const Home = observer(({ user }) => {
   const [noteDetails, setNoteDetails] = useState(null);
 
   const logout = () => {
-    window.open('http://localhost:5000/auth/logout', '_self');
+    window.open(`${process.env.REACT_APP_EXPRESS_URL}/auth/logout`, '_self');
   };
 
   const { notesStore } = useStore();
-  const { notes, getAllNotes } = notesStore;
+  const { notes, getAllNotes, setUserId } = notesStore;
+
+  setUserId(user.id);
 
   useEffect(() => {
-    getAllNotes(user.id);
+    getAllNotes();
   }, [addNote]);
 
   return (
