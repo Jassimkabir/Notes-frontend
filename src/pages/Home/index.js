@@ -56,9 +56,9 @@ const Home = observer(({ user }) => {
           <i className='fa-solid fa-arrow-right-from-bracket'></i>
         </button>
       )}
-      <div className='homeDiv d-flex justify-content-center'>
-        {notes.length > 0 ? (
-          notes.map((item) => (
+      {notes.length > 0 ? (
+        <div className='homeDiv d-flex justify-content-start'>
+          {notes.map((item) => (
             <NoteCard
               key={item.id}
               item={item}
@@ -67,8 +67,10 @@ const Home = observer(({ user }) => {
               setNoteId={setNoteId}
               setNoteDetails={setNoteDetails}
             />
-          ))
-        ) : (
+          ))}
+        </div>
+      ) : (
+        <div className='homeDiv d-flex justify-content-center'>
           <div
             className={
               !addNote &&
@@ -78,8 +80,8 @@ const Home = observer(({ user }) => {
             <img src={Notes} alt='' className='notesImage mb-2' />
             <h5>No notes here yet</h5>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 });
