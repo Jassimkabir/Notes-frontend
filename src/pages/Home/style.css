@@ -2,12 +2,19 @@
   display: none;
 }
 .homeDiv {
-  padding: 90px 10px 10px 10px;
+  padding: 90px 15px 10px 15px;
   flex-wrap: wrap;
   overflow: auto;
   max-height: 100vh;
   column-gap: 15px;
   row-gap: 15px;
+  display: flex;
+  justify-content: flex-start;
+}
+@media only screen and (max-device-width: 980px) {
+  .homeDiv {
+    justify-content: center;
+  }
 }
 .logoutContainer {
   width: 150px;

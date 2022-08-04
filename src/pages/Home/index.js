@@ -57,7 +57,7 @@ const Home = observer(({ user }) => {
         </button>
       )}
       {notes.length > 0 ? (
-        <div className='homeDiv d-flex justify-content-start'>
+        <div className='homeDiv'>
           {notes.map((item) => (
             <NoteCard
               key={item.id}
