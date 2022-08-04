@@ -2,7 +2,7 @@
   display: none;
 }
 .homeDiv {
-  padding: 90px 0px 10px 0px;
+  padding: 90px 10px 10px 10px;
   flex-wrap: wrap;
   overflow: auto;
   max-height: 100vh;

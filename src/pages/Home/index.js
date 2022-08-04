@@ -6,27 +6,30 @@ import ExpandCard from '../../components/ExpandCard';
 import Navbar from '../../components/Navbar';
 import NoteCard from '../../components/NoteCard';
 import Notes from '../../assets/images/Notes.png';
-import axios from '../../api/axios';
+import { useStore } from '../../store/index';
+import { observer } from 'mobx-react-lite';
 import './style.css';
 
-function Home({ user }) {
+const Home = observer(({ user }) => {
   const [addNote, setAddNote] = useState(false);
   const [logoutCard, setLogoutCard] = useState(false);
   const [deleteNote, setDeleteNote] = useState(false);
   const [expandCard, setExpandCard] = useState(false);
-  const [notes, setNotes] = useState([]);
   const [noteId, setNoteId] = useState(null);
   const [noteDetails, setNoteDetails] = useState(null);
 
   const logout = () => {
-    window.open('http://localhost:5000/auth/logout', '_self');
+    window.open(`${process.env.REACT_APP_EXPRESS_URL}/auth/logout`, '_self');
   };
 
+  const { notesStore } = useStore();
+  const { notes, getAllNotes, setUserId } = notesStore;
+
+  setUserId(user.id);
+
   useEffect(() => {
-    axios.get(`/notes/${user.id}/get-all-notes`).then((response) => {
-      setNotes(response.data);
-    });
-  }, [addNote, deleteNote]);
+    getAllNotes();
+  }, [addNote]);
 
   return (
     <>
@@ -53,9 +56,9 @@ function Home({ user }) {
           <i className='fa-solid fa-arrow-right-from-bracket'></i>
         </button>
       )}
-      <div className='homeDiv d-flex justify-content-center'>
-        {notes.length > 0 ? (
-          notes.map((item) => (
+      {notes.length > 0 ? (
+        <div className='homeDiv d-flex justify-content-start'>
+          {notes.map((item) => (
             <NoteCard
               key={item.id}
               item={item}
@@ -64,8 +67,10 @@ function Home({ user }) {
               setNoteId={setNoteId}
               setNoteDetails={setNoteDetails}
             />
-          ))
-        ) : (
+          ))}
+        </div>
+      ) : (
+        <div className='homeDiv d-flex justify-content-center'>
           <div
             className={
               !addNote &&
@@ -75,10 +80,10 @@ function Home({ user }) {
             <img src={Notes} alt='' className='notesImage mb-2' />
             <h5>No notes here yet</h5>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
-}
+});
 
 export default Home;
