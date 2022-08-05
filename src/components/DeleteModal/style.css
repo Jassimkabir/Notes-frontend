@@ -16,6 +16,15 @@
   top: 91px;
   animation: flyIn 0.5s;
 }
+@media only screen and (max-device-width: 415px) {
+  .divContainer {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .deleteModalContainer {
+    width: 100%;
+  }
+}
 @keyframes flyIn {
   0% {
     top: 0px;
