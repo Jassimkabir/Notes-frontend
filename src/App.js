@@ -3,37 +3,17 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
+import { useStore } from './store/index';
+import { observer } from 'mobx-react-lite';
 
-function App() {
-  const [user, setUser] = useState(null);
+const App = observer(() => {
+  const { authStore } = useStore();
+  const { getUser, user } = authStore;
 
   useEffect(() => {
-    const getUser = () => {
-      fetch('http://localhost:5000/auth/login/success', {
-        method: 'GET',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Credentials': true,
-        },
-      })
-        .then((response) => {
-          if (response.status === 200) {
-            return response.json();
-          }
-          throw new Error('Authentication Failed');
-        })
-        .then((resObject) => {
-          setUser(resObject.user);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
     getUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -47,6 +27,6 @@ function App() {
       </Routes>
     </BrowserRouter>
   );
-}
+});
 
 export default App;

@@ -29,7 +29,8 @@ const Home = observer(({ user }) => {
 
   useEffect(() => {
     getAllNotes();
-  }, [addNote]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

@@ -9,7 +9,7 @@ export const deleteNote = async (id) => {
 };
 
 export const addNote = async (userId, title, desc) => {
-  await axios.post(`http://localhost:5000/notes/${userId}/add-note`, {
+  return await axios.post(`/notes/${userId}/add-note`, {
     title: title,
     description: desc,
   });
