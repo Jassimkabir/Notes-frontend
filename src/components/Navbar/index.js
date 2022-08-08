@@ -30,7 +30,7 @@ function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
             className='profileButton d-flex align-items-center'
             onClick={() => setLogoutCard(!logoutCard)}
           >
-            <img src={avatar} className='profilePicture me-2' />
+            <img src={avatar} className='profilePicture me-2' alt='Profile' />
             <span className='profileName'>{firstName[0]}</span>
           </button>
         </div>
