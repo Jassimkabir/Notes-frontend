@@ -36,3 +36,8 @@
 .profileName {
   font-size: 18px;
 }
+@media only screen and (max-device-width: 415px) {
+  .profileName {
+    display: none;
+  }
+}
