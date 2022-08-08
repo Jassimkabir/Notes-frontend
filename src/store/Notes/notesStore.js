@@ -38,7 +38,18 @@ class notesStore {
   };
 
   addNote = async (title, desc) => {
-    await addNote(this.userId, title, desc);
+    const resp = await addNote(this.userId, title, desc);
+
+    const newNote = {
+      date: resp.data.date,
+      description: resp.data.description,
+      id: resp.data.id,
+      title: resp.data.title,
+      user_id: this.userId,
+    };
+    if (resp.status === 200) {
+      this.notes.unshift(newNote);
+    }
   };
 }
 export default notesStore;
