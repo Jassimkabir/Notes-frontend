@@ -1,18 +1,10 @@
 // import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './style.css';
-import axios from '../../api/axios';
 import { Link } from 'react-router-dom';
 
 function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
-  const [avatar, setAvatar] = useState('');
   const firstName = user.name.split(' ');
-
-  useEffect(() => {
-    axios.get(`/auth/${user.id}`).then((response) => {
-      setAvatar(response.data.avatar);
-    });
-  }, []);
 
   return (
     <div className='navbarContainer d-flex justify-content-between align-items-center'>
@@ -30,7 +22,11 @@ function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
             className='profileButton d-flex align-items-center'
             onClick={() => setLogoutCard(!logoutCard)}
           >
-            <img src={avatar} className='profilePicture me-2' alt='Profile' />
+            <img
+              src={user.avatar}
+              className='profilePicture me-2'
+              alt='Profile'
+            />
             <span className='profileName'>{firstName[0]}</span>
           </button>
         </div>
