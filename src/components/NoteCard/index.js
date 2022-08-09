@@ -51,9 +51,9 @@ function NoteCard({
             <button onClick={() => onDelete()} className='actionButton'>
               <i className='fa-solid fa-trash'></i>
             </button>
-            <button className='actionButton'>
+            {/* <button className='actionButton'>
               <i className='fa-solid fa-pen-to-square'></i>
-            </button>
+            </button> */}
             <button onClick={() => onExpand()} className='actionButton'>
               <i class='fa-solid fa-expand'></i>
             </button>
