@@ -23,9 +23,11 @@ function NoteCard({
   };
   const onExpand = () => {
     axios.get(`/notes/get-note/${item.id}`).then((response) => {
-      setNoteDetails(response.data);
+      if (response.status === 200) {
+        setNoteDetails(response.data);
+        setExpandCard(true);
+      }
     });
-    setExpandCard(true);
   };
   return (
     <div className='cardContainer'>

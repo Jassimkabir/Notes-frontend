@@ -41,7 +41,7 @@ const Home = observer(({ user }) => {
         setLogoutCard={setLogoutCard}
         user={user}
       />
-      {addNote && <AddNote setAddNote={setAddNote} user={user} />}
+      {addNote && <AddNote setAddNote={setAddNote} />}
       {expandCard && (
         <ExpandCard setExpandCard={setExpandCard} noteDetails={noteDetails} />
       )}

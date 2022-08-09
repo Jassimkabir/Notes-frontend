@@ -16,37 +16,35 @@ const AddNote = observer(({ setAddNote }) => {
   };
   return (
     <div className='addNoteContainer'>
-      <div className='containerBox'>
-        <button onClick={() => setAddNote(false)} className='closeMark'>
-          <i class='fa-solid fa-circle-xmark'></i>
-        </button>
-        <h3 className='text-center'>Add Note</h3>
-        <div className='inputFields'>
-          <label>Title :</label>
-          <div className='inputContainer'>
-            <input
-              autoFocus
-              onChange={(e) => setTitle(e.target.value)}
-              type='text'
-              className='w-100'
-            />
-          </div>
-          <label>Description :</label>
-          <div className='inputContainer'>
-            <textarea
-              cols='30'
-              rows='10'
-              onChange={(e) => setDesc(e.target.value)}
-              type='text'
-              className='textArea w-100'
-            ></textarea>
-          </div>
-        </div>
-        <div>
-          <button onClick={() => handleSubmit()} className='btn btn-primary'>
-            Submit
+      <div className='addNoteContents'>
+        <div className='addNoteHead d-flex justify-content-between align-items-center'>
+          <input
+            className='w-100 noteTitle'
+            autoFocus
+            type='text'
+            placeholder='Title'
+            onChange={(e) => setTitle(e.target.value)}
+          />
+          <button onClick={() => setAddNote(false)} className='closeButton'>
+            <i class='fa-solid fa-circle-xmark'></i>
           </button>
         </div>
+        <div className='addNoteBody my-4'>
+          <textarea
+            cols='30'
+            rows='10'
+            placeholder='Start Typing'
+            onChange={(e) => setDesc(e.target.value)}
+            type='text'
+            className='textArea w-100'
+          ></textarea>
+        </div>
+        <button
+          onClick={() => handleSubmit()}
+          className='btn btn-primary submitButton'
+        >
+          Submit
+        </button>
       </div>
     </div>
   );
