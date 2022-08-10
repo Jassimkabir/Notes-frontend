@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { getAllNotes, deleteNote, addNote } from '../../api/notes';
+import { getAllNotes, deleteNote, addNote, updateNote } from '../../api/notes';
 
 class notesStore {
   notes = [];
@@ -49,6 +49,16 @@ class notesStore {
     };
     if (resp.status === 200) {
       this.notes.unshift(newNote);
+    }
+  };
+
+  updateNote = async (title, desc) => {
+    const resp = await updateNote(this.noteId, title, desc);
+    if (resp.status === 200) {
+      const index = this.notes.findIndex((e) => e.id === this.noteId);
+      if (index !== -1) {
+        this.notes[index] = resp.data;
+      }
     }
   };
 }

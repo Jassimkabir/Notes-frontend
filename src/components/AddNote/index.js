@@ -11,6 +11,9 @@ const AddNote = observer(({ setAddNote }) => {
   const { addNote } = notesStore;
 
   const handleSubmit = () => {
+    if (/^\s*$/.test(title && desc)) {
+      return;
+    }
     addNote(title, desc);
     setAddNote(false);
   };
