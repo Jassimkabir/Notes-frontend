@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
 import './style.css';
+import { observer } from 'mobx-react-lite';
+import { useStore } from '../../store/index';
 
-function ExpandCard({ setExpandCard, noteDetails }) {
-  const [description, setDesc] = useState('');
-  const [title, setTitle] = useState('');
+const ExpandCard = observer(({ setExpandCard, noteDetails }) => {
+  const [title, setTitle] = useState(noteDetails?.title);
+  const [description, setDescription] = useState(noteDetails?.description);
+
+  const { notesStore } = useStore();
+  const { updateNote, setNoteId } = notesStore;
+
+  setNoteId(noteDetails?.id);
+
+  const onUpdate = () => {
+    if (/^\s*$/.test(title && description)) {
+      return;
+    }
+    updateNote(title, description);
+    setExpandCard(false);
+  };
 
   return (
     <div className='expandContainer'>
@@ -12,7 +27,8 @@ function ExpandCard({ setExpandCard, noteDetails }) {
           <input
             className='w-100 noteTitle'
             type='text'
-            defaultValue={noteDetails?.title}
+            placeholder='Title'
+            defaultValue={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <button onClick={() => setExpandCard(false)} className='closeButton'>
@@ -20,20 +36,34 @@ function ExpandCard({ setExpandCard, noteDetails }) {
           </button>
         </div>
         <div className='expandBody my-4'>
-          <input
+          {/* <input
             className='w-100 noteDescription'
             type='text'
-            defaultValue={noteDetails?.description}
-            onChange={(e) => setDesc(e.target.value)}
-          />
+            defaultValue={description}
+            onChange={(e) => setDescription(e.target.value)}
+          /> */}
+          <textarea
+            cols='30'
+            rows='10'
+            placeholder='Start Typing'
+            defaultValue={description}
+            onChange={(e) => setDescription(e.target.value)}
+            type='text'
+            className='textArea w-100'
+          ></textarea>
         </div>
       </div>
       {(description && description !== noteDetails?.description) ||
       (title && title !== noteDetails?.title) ? (
-        <button className='btn btn-primary updateButton'>Update</button>
+        <button
+          onClick={() => onUpdate()}
+          className='btn btn-primary updateButton'
+        >
+          Update
+        </button>
       ) : null}
     </div>
   );
-}
+});
 
 export default ExpandCard;

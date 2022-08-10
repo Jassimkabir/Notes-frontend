@@ -14,3 +14,10 @@ export const addNote = async (userId, title, desc) => {
     description: desc,
   });
 };
+
+export const updateNote = async (id, title, desc) => {
+  return await axios.post(`/notes/update-note/${id}`, {
+    title: title,
+    description: desc,
+  });
+};
