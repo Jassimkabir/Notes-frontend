@@ -17,12 +17,27 @@ const NoteCard = observer(
       setDeleteNote(true);
       setNoteId(item.id);
     };
-    const onExpand = () => {
-      axios.get(`/notes/get-note/${item.id}`).then((response) => {
-        if (response.status === 200) {
-          setNoteDetails(response.data);
-          setExpandCard(true);
+    const onExpand = async () => {
+      // axios.get(`/notes/get-note/${item.id}`).then((response) => {
+      //   if (response.status === 200) {
+      //     setNoteDetails(response.data);
+      //     setExpandCard(true);
+      //   }
+      // });
+      await fetch(
+        `${process.env.REACT_APP_EXPRESS_URL}/notes/get-note/${item.id}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true,
+          },
         }
+      ).then(async (resp) => {
+        setNoteDetails(await Promise.resolve(resp.json()));
+        setExpandCard(true);
       });
     };
     return (

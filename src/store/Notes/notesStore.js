@@ -26,8 +26,8 @@ class notesStore {
 
   getAllNotes = async () => {
     const resp = await getAllNotes(this.userId);
-    if (resp.status === 200) {
-      this.setNotes(resp.data);
+    if (resp) {
+      this.setNotes(resp);
     }
   };
 

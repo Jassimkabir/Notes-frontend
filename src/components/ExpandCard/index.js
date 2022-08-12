@@ -38,7 +38,7 @@ const ExpandCard = observer(({ setExpandCard, noteDetails }) => {
         <div className='expandBody my-4'>
           <textarea
             cols='30'
-            rows='10'
+            rows='100'
             placeholder='Start Typing'
             defaultValue={description}
             onChange={(e) => setDescription(e.target.value)}
