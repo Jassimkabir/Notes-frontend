@@ -14,7 +14,7 @@ class authStore {
 
   getUser = async () => {
     const resp = await getUser();
-    this.setUser(resp.user);
+    this.setUser(resp.data.user);
   };
 }
 export default authStore;
