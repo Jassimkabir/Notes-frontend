@@ -35,7 +35,7 @@ const AddNote = observer(({ setAddNote }) => {
         <div className='addNoteBody my-4'>
           <textarea
             cols='30'
-            rows='10'
+            rows='100'
             placeholder='Start Typing'
             onChange={(e) => setDesc(e.target.value)}
             type='text'

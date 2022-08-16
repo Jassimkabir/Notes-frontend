@@ -43,3 +43,36 @@
   border: none;
   background: #00000000;
 }
+.modalContainer {
+  width: 100vw;
+  z-index: 1;
+  color: #ffffff;
+  position: fixed;
+}
+.modalCard {
+  width: 23rem;
+  background: rgba(79, 79, 79, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(97, 97, 97, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 15px;
+  padding: 40px;
+  position: absolute;
+  animation: flyInModal 0.5s;
+}
+@media only screen and (max-device-width: 415px) {
+  .modalContainer {
+    margin: 0 15px;
+  }
+}
+@keyframes flyInModal {
+  0% {
+    top: -91px;
+    z-index: 0;
+    opacity: 0;
+  }
+  100% {
+    top: 0px;
+  }
+}
