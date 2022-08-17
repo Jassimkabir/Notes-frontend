@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from '../../api/axios';
 import './style.css';
 import { observer } from 'mobx-react-lite';
+import { useStore } from '../../store';
 
 const NoteCard = observer(
   ({ item, setDeleteNote, setExpandCard, setNoteId, setNoteDetails }) => {
@@ -13,26 +14,29 @@ const NoteCard = observer(
     const hours = Math.round(duration.asHours());
     const minutes = Math.round(duration.asMinutes());
 
-    const [errorModal, setErrorModal] = useState(false);
+    // const [errorModal, setErrorModal] = useState(true);
+
+    const { authStore } = useStore();
+    const { status } = authStore;
+
+    console.log(status);
 
     const onDelete = () => {
       setDeleteNote(true);
       setNoteId(item.id);
     };
     const onExpand = async () => {
-      await axios
-        .get(`/notes/get-note/${item.id}`)
-        .then((response) => {
-          if (response.status === 200) {
-            setNoteDetails(response.data);
-            setExpandCard(true);
-          }
-        })
-        .catch((err) => {
-          if (err.response.status === 400) {
-            setErrorModal(true);
-          }
-        });
+      await axios.get(`/notes/get-note/${item.id}`).then((response) => {
+        if (response.status === 200) {
+          setNoteDetails(response.data);
+          setExpandCard(true);
+        }
+      });
+      // .catch((err) => {
+      //   if (err.response.status === 400) {
+      //     setErrorModal(true);
+      //   }
+      // });
     };
     return (
       <>
@@ -58,20 +62,22 @@ const NoteCard = observer(
                 <button onClick={() => onDelete()} className='actionButton'>
                   <i className='fa-solid fa-trash'></i>
                 </button>
-                <button onClick={() => onExpand()} className='actionButton'>
-                  <i class='fa-solid fa-expand'></i>
-                </button>
+                {status && (
+                  <button onClick={() => onExpand()} className='actionButton'>
+                    <i class='fa-solid fa-expand'></i>
+                  </button>
+                )}
               </div>
             </div>
           </div>
         </div>
-        {errorModal && (
+        {/* {!status && errorModal && (
           <div className='modalContainer  d-flex justify-content-center'>
             <div className='modalCard'>
               <div className='text-center'>
                 <h5 className='p-3'>
-                  <i className='fa-solid fa-circle-exclamation me-2'></i>This
-                  feature is not yet available for you.
+                  <i className='fa-solid fa-circle-exclamation me-2'></i>You
+                  have limited access to this website
                 </h5>
               </div>
               <div className='divFoot d-flex justify-content-end p-1'>
@@ -84,7 +90,7 @@ const NoteCard = observer(
               </div>
             </div>
           </div>
-        )}
+        )} */}
       </>
     );
   }
