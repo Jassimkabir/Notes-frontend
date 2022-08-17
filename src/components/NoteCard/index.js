@@ -19,8 +19,6 @@ const NoteCard = observer(
     const { authStore } = useStore();
     const { status } = authStore;
 
-    console.log(status);
-
     const onDelete = () => {
       setDeleteNote(true);
       setNoteId(item.id);
