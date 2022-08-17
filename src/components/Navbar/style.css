@@ -41,3 +41,16 @@
     display: none;
   }
 }
+.altProfileDiv {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  background: #8d8d8d85;
+  color: #ffffff;
+  border: none;
+}
+.firstLetter {
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 600;
+}
