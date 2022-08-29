@@ -6,10 +6,8 @@ import {
   createInstance,
   OptimizelyFeature,
   OptimizelyProvider,
-  withOptimizely,
-  useDecision,
 } from '@optimizely/react-sdk';
-import { browserName, browserVersion } from 'react-device-detect';
+import { browserName } from 'react-device-detect';
 
 function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
   const firstName = user.name.split(' ');
