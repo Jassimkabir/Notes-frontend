@@ -6,6 +6,7 @@ import {
   createInstance,
   OptimizelyFeature,
   OptimizelyProvider,
+  setLogger,
 } from '@optimizely/react-sdk';
 import { browserName } from 'react-device-detect';
 
@@ -13,19 +14,17 @@ function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
   const firstName = user.name.split(' ');
   const firstLetter = user.name.split('');
 
+  setLogger(null);
+
   const [avatar, setAvatar] = useState(true);
 
   const optimizely = createInstance({
     sdkKey: 'QLrDLe4wZnWctqWPt2BLs',
   });
 
-  console.log('Optimizely Client', optimizely);
-
   const onImageError = () => {
     setAvatar(false);
   };
-
-  console.log(`${browserName}`);
 
   return (
     <OptimizelyProvider
