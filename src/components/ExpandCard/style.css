@@ -17,12 +17,31 @@ input::placeholder,
   width: 100vw;
   height: 100vh;
   background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(8.5px);
-  -webkit-backdrop-filter: blur(8.5px);
   position: fixed;
   z-index: 1;
   color: white;
-  padding: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.expandCard {
+  width: 90%;
+  height: 60%;
+  overflow: scroll;
+  background: rgba(79, 79, 79, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(97, 97, 97, 0.37);
+  backdrop-filter: blur(8.5px);
+  -webkit-backdrop-filter: blur(8.5px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 15px;
+  padding: 0 20px 20px;
+  position: relative;
+  padding: 20px;
+}
+.expandCard .updateButton {
+  bottom: 0;
+  left: 100%;
+  position: sticky;
 }
 .closeButton {
   background: #00000000;
@@ -33,9 +52,4 @@ input::placeholder,
 .noteTitle {
   font-size: 20px;
   font-weight: 600;
-}
-.updateButton {
-  bottom: 28px;
-  right: 28px;
-  position: absolute;
 }
