@@ -15,15 +15,18 @@ function Navbar({ setAddNote, logoutCard, setLogoutCard, user }) {
 
   return (
     <div className='navbarContainer d-flex justify-content-between align-items-center'>
-      <div className='logo'>
-        <Link to='/home' className='text-white logo'>
+      <div className='logo d-flex justify-content-between align-items-center'>
+        <Link to='/notes' className='text-white logo'>
           Notes
         </Link>
+        <button
+          className='btn btn-primary btn-rounded btn-icon ms-4'
+          onClick={() => setAddNote(true)}
+        >
+          <i class='fa-solid fa-plus'></i>
+        </button>
       </div>
       <div className='containerRight d-flex align-items-center'>
-        <button className='btn btn-primary' onClick={() => setAddNote(true)}>
-          Add Note
-        </button>
         <div className='profileDiv'>
           <button
             className='profileButton d-flex align-items-center'

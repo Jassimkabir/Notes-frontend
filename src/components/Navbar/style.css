@@ -9,6 +9,26 @@
   position: fixed;
   z-index: 1;
 }
+.btn.btn-rounded {
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+  display: grid;
+  place-content: center;
+}
+option {
+  background-color: #000000;
+  color: #ffffff;
+}
+option:active {
+  background-color: #000000;
+}
+select {
+  background: none;
+  outline: none;
+  border: none;
+  color: #ffffff;
+}
 .logo {
   cursor: pointer;
   font-size: 27px;

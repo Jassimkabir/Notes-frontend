@@ -19,9 +19,9 @@ const App = observer(() => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={user ? <Navigate to='/home' /> : <Login />} />
+        <Route path='/' element={user ? <Navigate to='/notes' /> : <Login />} />
         <Route
-          path='/home'
+          path='/notes'
           element={user ? <Home user={user} /> : <Navigate to='/' />}
         />
       </Routes>
